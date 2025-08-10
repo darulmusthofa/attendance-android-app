@@ -23,7 +23,6 @@ jobs:
 
       - name: Grant execute permission to Gradle
         run: chmod +x ./gradlew
-
       - name: Build Release APK
         run: ./gradlew assembleRelease
         
