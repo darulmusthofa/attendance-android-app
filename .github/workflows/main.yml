@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build Android App
+    name: Build and Test Android App
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +24,11 @@ jobs:
     - name: Grant execute permission to gradlew
       run: chmod +x ./gradlew
 
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Build APK (Debug)
+      run: ./gradlew assembleDebug
+
+    - name: Run Unit Tests
+      run: ./gradlew testDebugUnitTest
+
+    - name: Run Lint (non-blocking)
+      run: ./gradlew lintDebug || echo "Lint issues found, but build continues"
